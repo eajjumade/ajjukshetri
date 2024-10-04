@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes List Provider</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <style>
+        body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #140e13, #28282f,#fffb00,#fffb00);
+    color: white;
+}
+
+#notes-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 155vh;
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px #fffb00(255, 0, 255, 0.8), 0 0 20px #fffb00(0, 170, 255, 0.6);
+}
+
+.notes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.note-card {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.note-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.note-card p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.btn {
+    background: linear-gradient(90deg, #fffb00, #fffb00);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    background: linear-gradient(90deg, #fffb00, #fffb00);
+    transform: scale(1.05);
+}
+
+.note-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+    </style>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+document.querySelectorAll('.note-card').forEach(card => {
+    gsap.from(card, {
+        duration: 1.2,
+        opacity: 0,
+        y: 50,
+        ease: "power3.out",
+        stagger: 0.2,
+        scrollTrigger: {
+            trigger: card,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+        }
+    });
+});
+
+    </script>
+    <section id="notes-list">
+        <div class="container">
+            <h1>Notes List Provider</h1>
+            <div class="notes-container">
+                <div class="note-card" data-category="mathematics">
+                    <h2>Mathematics</h2>
+                    <p>Find notes for various mathematics topics and semesters.</p>
+                    <a href="#" class="btn">Explore</a>
+                </div>
+                <div class="note-card" data-category="computer-fundamentals">
+                    <h2>Computer Fundamentals & Applications</h2>
+                    <p>Access comprehensive notes on computer fundamentals.</p>
+                    <a href="#" class="btn">Explore</a>
+                </div>
+                <div class="note-card" data-category="society-technology">
+                    <h2>Society and Technology</h2>
+                    <p>Browse notes related to society and technological advancements.</p>
+                    <a href="#" class="btn">Explore</a>
+                </div>
+                <div class="note-card" data-category="english">
+                    <h2>English</h2>
+                    <p>Get notes for various English language topics.</p>
+                    <a href="#" class="btn">Explore</a>
+                </div>
+              <div class="note-card" data-category="english">
+                  <h2>English</h2>
+                  <p>Get notes for various English language topics.</p>
+                  <a href="#" class="btn">Explore</a>
+              </div>
+                <div class="note-card" data-category="digital-logic">
+                    <h2>Digital Logic</h2>
+                    <p>Explore notes on digital logic design and theory.</p>
+                    <a href="#" class="btn">Explore</a>
+                  
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/ScrollTrigger.min.js"></script>
+        <script src="scripts.js"></script>
+    </section>
+<!-- Code injected by live-server -->
+<script>
+  // <![CDATA[  <-- For SVG support
+  if ('WebSocket' in window) {
+    (function () {
+      function refreshCSS() {
+        var sheets = [].slice.call(document.getElementsByTagName("link"));
+        var head = document.getElementsByTagName("head")[0];
+        for (var i = 0; i < sheets.length; ++i) {
+          var elem = sheets[i];
+          var parent = elem.parentElement || head;
+          parent.removeChild(elem);
+          var rel = elem.rel;
+          if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+          }
+          parent.appendChild(elem);
+        }
+      }
+      var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+      var address = protocol + window.location.host + window.location.pathname + '/ws';
+      var socket = new WebSocket(address);
+      socket.onmessage = function (msg) {
+        if (msg.data == 'reload') window.location.reload();
+        else if (msg.data == 'refreshcss') refreshCSS();
+      };
+      if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+        console.log('Live reload enabled.');
+        sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+      }
+    })();
+  }
+  else {
+    console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+  }
+  // ]]>
+</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Typing Game with Levels and Timer</title>
+ <style>
+ body {
+ font-family: 'Courier New', Courier, monospace;
+ background-color: #2d2d2d;
+ color: #fff;
+ text-align: center;
+ padding: 20px;
+ }
+ .test-container {
+ margin-top: 20px;
+ }
+ #word-display {
+ font-size: 28px;
+ margin-bottom: 20px;
+ }
+ input[type="text"] {
+ border: 2px solid #4caf50;
+ background: none;
+ font-size: 24px;
+ color: #fff;
+ padding: 10px;
+ width: 500px;
+ text-align: center;
+ }
+ input[type="text"]:focus {
+ outline: none;
+ }
+ .keyboard {
+ display: grid;
+ grid-template-columns: repeat(10, 60px);
+ grid-gap: 10px;
+ justify-content: center;
+ margin: 20px auto;
+ }
+ .key {
+ width: 60px;
+ height: 60px;
+ background-color: #444;
+ display: fex;
+ justify-content: center;
+ align-items: center;
+ color: #fff;
+ font-size: 24px;
+ border-radius: 5px;
+ transition: background-color 0.2s;
+ }
+ .key.active {
+ background-color: #4caf50;
+ transform: scale(1.1);
+ }
+ #wpm {
+ font-size: 28px;
+ margin-top: 20px;
+ }
+ #timer {
+ font-size: 24px;
+ margin-top: 20px;
+ }
+ #level-display {
+ font-size: 20px;
+ margin-top: 10px;
+ }
+ </style>
+</head>
+<body>
+ <h1>Typing Game with Levels and Timer</h1>
+ <div class="test-container">
+ <div id="word-display">Click below and start typing...</div>
+ <input type="text" id="word-input" placeholder="Start typing...">
+ <div id="wpm">WPM: 0</div>
+ <div id="timer">Time Left: 60 seconds</div>
+ <div id="level-display">Level: 1</div>
+ </div>
+ <div class="keyboard" id="keyboard">
+ <!-- Keyboard Layout -->
+ <div class="key" data-key="q">Q</div>
+ <div class="key" data-key="w">W</div>
+ <div class="key" data-key="e">E</div>
+ <div class="key" data-key="r">R</div>
+ <div class="key" data-key="t">T</div>
+ <div class="key" data-key="y">Y</div>
+ <div class="key" data-key="u">U</div>
+ <div class="key" data-key="i">I</div>
+ <div class="key" data-key="o">O</div>
+ <div class="key" data-key="p">P</div>
+ <div class="key" data-key="a">A</div>
+ <div class="key" data-key="s">S</div>
+ <div class="key" data-key="d">D</div>
+ <div class="key" data-key="f">F</div>
+ <div class="key" data-key="g">G</div>
+ <div class="key" data-key="h">H</div>
+ <div class="key" data-key="j">J</div>
+ <div class="key" data-key="k">K</div>
+ <div class="key" data-key="l">L</div>
+ <div class="key" data-key="z">Z</div>
+ <div class="key" data-key="x">X</div>
+ <div class="key" data-key="c">C</div>
+ <div class="key" data-key="v">V</div>
+ <div class="key" data-key="b">B</div>
+ <div class="key" data-key="n">N</div>
+ <div class="key" data-key="m">M</div>
+ </div>
+ <script>
+ const levels = [
+ ["quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"],
+ ["function", "variable", "array", "object", "string", "integer", "foat", "boolean"],
+ ["exception", "syntax", "polymorphism", "inheritance", "encapsulation", "abstraction", "debugging", "algorithm"]
+ ];
+ let levelIndex = 0;
+ let currentWordIndex = 0;
+ let typedChars = 0;
+ let startTime = null;
+ let gameEnded = false;
+ let timeLeft = 60; // 1 minute timer
+ const wordDisplay = document.getElementById('word-display');
+ const wordInput = document.getElementById('word-input');
+ const keyboardKeys = document.querySelectorAll('.key');
+ const wpmDisplay = document.getElementById('wpm');
+ const timerDisplay = document.getElementById('timer');
+ const levelDisplay = document.getElementById('level-display');
+ function updateWordDisplay() {
+ wordDisplay.textContent = levels[levelIndex].join(" ");
+ }
+ function calculateWPM() {
+ const elapsedTime = (new Date() - startTime) / 60000; // Time in minutes
+ const wpm = Math.round((typedChars / 5) / elapsedTime);
+ wpmDisplay.textContent = `WPM: ${wpm}`;
+ }
+ function activateKey(char) {
+ const keyElement = document.querySelector(`.key[data-key="${char.toLowerCase()}"]`);
+ if (keyElement) {
+ keyElement.classList.add('active');
+ setTimeout(() => keyElement.classList.remove('active'), 150);
+ }
+ }
+ wordInput.addEventListener('input', (e) => {
+ if (!startTime) startTime = new Date(); // Start the timer on frst input
+ const inputVal = wordInput.value.trim();
+ if (inputVal === levels[levelIndex][currentWordIndex]) {
+ typedChars += inputVal.length;
+ currentWordIndex++;
+ wordInput.value = ""; // Clear input
+ if (currentWordIndex === levels[levelIndex].length) {
+ levelIndex = (levelIndex + 1) % levels.length; // Move to the next level or repeat
+ currentWordIndex = 0;
+ }
+ levelDisplay.textContent = `Level: ${levelIndex + 1}`;
+ updateWordDisplay();
+ }
+ // Activate the corresponding key on the virtual keyboard
+ const lastTypedChar = inputVal.slice(-1);
+ if (lastTypedChar) activateKey(lastTypedChar);
+ calculateWPM(); // Update WPM
+ });
+ function startTimer() {
+ const timerInterval = setInterval(() => {
+ if (gameEnded) {
+ clearInterval(timerInterval);
+ return;
+ }
+ timeLeft--;
+ timerDisplay.textContent = `Time Left: ${timeLeft} seconds`;
+ if (timeLeft === 0) {
+ gameEnded = true;
+ wordInput.disabled = true;
+ wpmDisplay.textContent = `Game Over! Final WPM: ${wpmDisplay.textContent.split(' ')[1]}`;
+ clearInterval(timerInterval);
+ }
+ }, 1000);
+ }
+ updateWordDisplay();
+ startTimer();
+ </script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Advanced Contact Us</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<style>
+  /* Basic Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #fffb00, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Main Container */
+  .main-container {
+    width: 90%;
+    max-width: 1200px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  header h1 {
+    font-size: 3rem;
+    color: #333;
+    text-transform: uppercase;
+  }
+
+  header p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+  }
+
+  /* Contact Container */
+  .contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* Card Styles with Glassmorphism */
+  .card {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .card:hover::before {
+    left: 100%;
+  }
+
+  .card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .card p {
+    font-size: 1.1rem;
+    color: #777;
+  }
+
+  /* Contact Form Styles */
+  .contact-form {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-group {
+    margin-bottom: 20px;
+  }
+
+  .input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+
+  .input-group input,
+  .input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .input-group input:focus,
+  .input-group textarea:focus {
+    box-shadow: 0 6px 15px rgba(255, 251, 0, 0.6);
+    outline: none;
+  }
+
+  /* Submit Button */
+  .submit-btn {
+    background-color: #fffb00;
+    color: #333;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(255, 251, 0, 0.4);
+  }
+
+  /* Footer Social Links */
+  footer {
+    margin-top: 30px;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .icon {
+    text-decoration: none;
+    color: #fffb00;
+    font-size: 1.5rem;
+    transition: transform 0.4s ease, color 0.4s ease;
+  }
+
+  .icon:hover {
+    transform: translateY(-5px);
+    color: #333;
+  }
+
+</style>
+  <script>
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mouseover', () => {
+        card.style.transform = 'translateY(-10px)';
+      });
+
+      card.addEventListener('mouseout', () => {
+        card.style.transform = 'translateY(0)';
+      });
+    });
+
+    document.querySelectorAll('.submit-btn').forEach(button => {
+      button.addEventListener('mouseover', () => {
+        button.style.transform = 'translateY(-5px)';
+      });
+
+      button.addEventListener('mouseout', () => {
+        button.style.transform = 'translateY(0)';
+      });
+    });
+
+  </script>
+  <div class="main-container">
+    <header>
+      <h1>Contact Us</h1>
+      <p>We'd love to hear from you! Let's get in touch.</p>
+    </header>
+    
+    <div class="contact-container">
+      <div class="cards-container">
+        <div class="card">
+          <h2>Email Us</h2>
+          <p>Reach out via email for any inquiries.</p>
+        </div>
+        <div class="card">
+          <h2>Call Us</h2>
+          <p>Contact us via phone for immediate assistance.</p>
+        </div>
+        <div class="card">
+          <h2>Visit Us</h2>
+          <p>Visit us at our office Monday to Friday.</p>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <form action="#" method="post">
+          <div class="input-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="input-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="input-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="social-links">
+      <a href="#" class="icon facebook">Facebook</a>
+      <a href="#" class="icon twitter">Twitter</a>
+      <a href="#" class="icon linkedin">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

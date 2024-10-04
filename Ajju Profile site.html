@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name - Creative Profile</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #000000;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, #fffb00, #ffb300);
+      padding: 60px 0;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile-pic-container {
+      width: 150px;
+      height: 150px;
+      overflow: hidden;
+      border-radius: 50%; /* Ensures the image is circular */
+      border: 5px solid #333; /* Add a border if desired */
+      margin-bottom: 20px;
+    }
+
+    .profile-pic {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures the image covers the circle evenly */
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-top: 20px;
+      color: #333;
+    }
+
+    .cta-button {
+      background-color: #333;
+      color: #fffb00;
+      border: none;
+      padding: 10px 25px;
+      margin-top: 20px;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      
+    }
+
+    .cta-button:hover {
+      background-color: #fffb00;
+      color: #333;
+    }
+
+    /* Section Styling */
+    section {
+      background-color: #fff;
+      margin: 30px auto;
+      max-width: 900px;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      opacity: 0;
+      transform: translateX(-100%);
+      animation: slide-in 1s forwards;
+    }
+
+    /* Slide Animation */
+    @keyframes slide-in {
+      0% {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    section:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    section:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    section:nth-child(4) {
+      animation-delay: 0.6s;
+    }
+    section:nth-child(5) {
+      animation-delay: 0.8s;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+   
+
+  </style>
+  <!-- Profile Header Section -->
+  <header>
+    <div class="profile-header">
+      <div class="profile-pic-container">
+        <img src="https://i.ibb.co/Ttsxs32/Ajju-Acknowledge.jpg" alt="Your Profile Picture" class="profile-pic">
+      </div>
+      <h1> Ajju Kshetri</h1>
+      <i>
+      <p class="tagline">"Dare to dream, then dare to do."Boom</p><div>"Dream big. Work hard. Conquer everything."<div></i>
+      <button class="cta-button">
+        <a href="C:\Users\utgs1\Desktop\Ajju contact website.html">Contact Me</a></button>
+    </div>
+  </header>
+
+  <!-- Biography Section -->
+  <section class="bio slide-in" id="bio">
+    <h2>About Me</h2>
+    <p>
+      Hi there! I'm  Ajju Kshetri, a BCA Student with a passion for creating solutions that make a difference. With a knack for Web development, I've worked on my own practicles, helping clients and companies bring their ideas to life.
+    </p>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="skills slide-in" id="skills">
+    <h2>Skills</h2>  
+    <div class="skill-item">
+      <h3>Web Development</h3>
+      <div class="progress-bar">
+        <span class="progress" style="width: 90%;"></span>
+      </div>
+    </div>
+    <div class="skill-item">
+      <h3>Graphic Design</h3>
+      <div class="progress-bar">
+        <span class="progress" style="width: 75%;"></span>
+      </div>
+    </div>
+    <div class="skill-item">
+      <h3>Project Management</h3>
+      <div class="progress-bar">
+        <span class="progress" style="width: 85%;"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+ 
+
+  <!-- Contact Section -->
+  <section class="contact slide-in" id="contact">
+    <h2>Contact Me</h2>
+    <ul>
+      <li><a href="mailto:kshetriinu@gmail.com">Email: kshetriinu@gmail.com</a></li>
+      <li><a href="https://www.facebook.com/ajju.kshetri.9?mibextid=ZbWKwLs" target="_blank">Facebook</a></li>
+    
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Your Name | All Rights Reserved</p>
+  </footer>
+</body>
+</html>
